@@ -1,6 +1,8 @@
 package com.quan.petcaringapp.Entity;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -23,7 +25,7 @@ public class Pet {
     )
     @GeneratedValue(
         strategy = GenerationType.SEQUENCE,
-        generator = "petsequence"
+        generator = "pet_sequence"
     )
     @Column(name = "id", updatable = false)
     private Long id;
@@ -44,6 +46,13 @@ public class Pet {
     @Column(name = "type", nullable = false)
     private PetType type;
 
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @JoinColumn(name = "customer_id", referencedColumnName = "id")
+    private Customer customer;
+
+    @ManyToMany(mappedBy = "pets")
+    private List<Schedule> schedules = new ArrayList<>();
+
     public Pet( String name, LocalDate birthDate, String notes,
             PetType type) {
         this.name = name;
@@ -51,6 +60,8 @@ public class Pet {
         this.notes = notes;
         this.type = type;
     }
+
+
 
 
 
