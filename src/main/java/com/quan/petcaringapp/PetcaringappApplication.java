@@ -4,6 +4,7 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.boot.CommandLineRunner;
@@ -56,6 +57,9 @@ public class PetcaringappApplication {
 			schedule1.getStaffs().add(thong);
 
 			scheduleRepos.save(schedule1);
+
+			List<Customer> customers = customerRepos.findAll();
+			// customers.stream().forEach(cust -> System.out.println(cust));
 		};
 	}
 }

@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
@@ -50,6 +52,7 @@ public class Pet {
     @JoinColumn(name = "customer_id", referencedColumnName = "id")
     private Customer customer;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "pets")
     private List<Schedule> schedules = new ArrayList<>();
 
