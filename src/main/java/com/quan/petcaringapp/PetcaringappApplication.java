@@ -35,11 +35,13 @@ public class PetcaringappApplication {
 		return args -> {
 			Customer quan = new Customer("quan", "0913209809", "quan@gmail.com", "take care of my pets");
 			customerRepos.save(quan);
+			Customer thong1 = new Customer("thong1", "0913209807", "thong123456789@gmail.com", "take care of my pets 123");
+			customerRepos.save(thong1);
 
 			Pet a = new Pet("ben", LocalDate.of(2015, 8, 17), "he is quite aggressive", PetType.DOG);
 			a.setCustomer(quan);
 			Pet b = new Pet("duy", LocalDate.of(2012, 11, 9), "he is quite inactive", PetType.DOG);
-			b.setCustomer(quan);
+			b.setCustomer(thong1);
 
 			petRepos.save(a);
 			petRepos.save(b);

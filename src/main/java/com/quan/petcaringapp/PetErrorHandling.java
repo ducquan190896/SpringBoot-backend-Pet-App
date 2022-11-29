@@ -12,7 +12,7 @@ import com.quan.petcaringapp.Exception.EntityNotFoundException;
 import com.quan.petcaringapp.Exception.ErrorResponse;
 
 @ControllerAdvice
-public class ErrorHandling {
+public class PetErrorHandling {
     
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity<Object> handleEntityNotFound(EntityNotFoundException ex) {

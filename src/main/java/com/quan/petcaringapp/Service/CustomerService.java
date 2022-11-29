@@ -2,16 +2,23 @@ package com.quan.petcaringapp.Service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.quan.petcaringapp.Entity.Customer;
+import com.quan.petcaringapp.Repository.CustomerRepos;
 
+@Service
+public class CustomerService {
+    @Autowired
+    CustomerRepos customerRepos;
 
-public interface CustomerService {
-   public Customer getCustomer(String email);
-   public List<Customer> getCustomers();
-   public void saveCustomer(Customer customer);
-   public Customer updateCustomer(Long id, Customer customer);
-   public void deleteCustomer(Long id);
-
+    public List<Customer> getCustomers() {
+        return customerRepos.findAll();
+    }
+    // public String getCustomers() {
+    //     customerRepos.findAll().stream().forEach(cust -> System.out.println(cust));
+    //     System.out.println("hello");
+    //     return "hello";
+    // }
 }
