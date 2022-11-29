@@ -1,5 +1,6 @@
 package com.quan.petcaringapp.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +17,11 @@ public class CustomerService {
     public List<Customer> getCustomers() {
         return customerRepos.findAll();
     }
-    // public String getCustomers() {
-    //     customerRepos.findAll().stream().forEach(cust -> System.out.println(cust));
-    //     System.out.println("hello");
-    //     return "hello";
-    // }
+    
+    public List<Customer> getCustomers1() {
+        List<Customer> list = new ArrayList<>();
+        Customer customer1 = new Customer("Thoa", "0412456789", "Thoa@gmail.com", "my pet is sick, take it to the hospital");
+        list.add(customer1);
+        return list;
+    }
 }

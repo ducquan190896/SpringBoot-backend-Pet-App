@@ -26,9 +26,9 @@ public class CustomerController {
     public ResponseEntity<List<Customer>> getCustomers() {
         return new ResponseEntity<List<Customer>>(customerService.getCustomers(), HttpStatus.OK);
     }
-    // @GetMapping("/all")
-    // public ResponseEntity<String> getCustomers() {
+    @GetMapping("/all1")
+    public ResponseEntity<List<Customer>> getCustomers1() {
         
-    //     return new ResponseEntity<>(customerService.getCustomers(), HttpStatus.OK);
-    // }
+        return new ResponseEntity<>(customerService.getCustomers1(), HttpStatus.OK);
+    }
 }
