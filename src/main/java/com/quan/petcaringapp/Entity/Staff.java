@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.time.DayOfWeek;
 
 import jakarta.persistence.*;
@@ -41,12 +43,14 @@ public class Staff {
     @Column(name = "name", nullable = false)
     private String name;
 
+    @Enumerated(EnumType.STRING)
     @ElementCollection(targetClass = EmployeeSkills.class)
     private Set<EmployeeSkills> skills = new HashSet<>();
 
     @ElementCollection(targetClass = DayOfWeek.class)
     private Set<DayOfWeek> dayAvailable = new HashSet<>();
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "staffs")
     private List<Schedule> schedules = new ArrayList<>(); 
 

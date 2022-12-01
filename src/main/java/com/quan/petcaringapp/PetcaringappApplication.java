@@ -52,8 +52,8 @@ public class PetcaringappApplication {
 			Staff thong = new Staff("thong@gmail.com", "thong", skills , new HashSet<>(Arrays.asList(DayOfWeek.MONDAY, DayOfWeek.TUESDAY)));
 
 			employeeRepos.save(thong);
-			Set<Staff> employees = employeeRepos.findStaffByDayAvailable(DayOfWeek.TUESDAY);
-			employees.stream().forEach(employee -> System.out.println(employee.getName() + " _ " + employee.getEmail()));
+			Set<Staff> employees = employeeRepos.findStaffBySkills(EmployeeSkills.SHAVING);
+			
 			Schedule schedule1 = new Schedule(LocalDate.of(2022, 12, 30));
 			schedule1.getPets().add(a);
 			schedule1.getStaffs().add(thong);
@@ -62,6 +62,14 @@ public class PetcaringappApplication {
 
 			List<Customer> customers = customerRepos.findAll();
 			// customers.stream().forEach(cust -> System.out.println(cust));
+			// employees.stream().forEach(employee -> System.out.println(employee.getName() + " _ skill _ " + employee.getEmail()));
+
+			List<Schedule> schedules = scheduleRepos.findScheduleByPets(a);
+			
+			List<Schedule> schedules2 = scheduleRepos.findScheduleByStaffs(thong);
+			// schedules.stream().forEach(sche -> System.out.println(sche));
+
+			// schedules2.stream().forEach(sche -> System.out.println(sche));
 		};
 	}
 }

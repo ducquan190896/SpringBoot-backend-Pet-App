@@ -6,7 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonFormatTypes;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -35,10 +37,11 @@ public class Schedule {
     private Long id;
 
     @NonNull
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     @Column(name = "date", nullable = false)
-    private LocalDate Date;
+    private LocalDate date;
 
-    @JsonIgnore
+    // @JsonIgnore
     @ManyToMany
     @JoinTable( 
         name = "schedule_pets",
@@ -47,7 +50,7 @@ public class Schedule {
     )
     private List<Pet> pets = new ArrayList<>();
 
-    @JsonIgnore
+    // @JsonIgnore
     @ManyToMany
     @JoinTable(
         name = "schedule_staff",
@@ -55,6 +58,11 @@ public class Schedule {
         inverseJoinColumns = @JoinColumn(name = "staff_id", referencedColumnName = "id")
     )
     private List<Staff> staffs = new ArrayList<>();
+
+    @Override
+    public String toString() {
+        return "Schedule [id=" + id + ", Date=" + date + "]";
+    }
 
 
 
